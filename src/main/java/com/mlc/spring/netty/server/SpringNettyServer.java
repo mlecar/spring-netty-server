@@ -1,16 +1,16 @@
 package com.mlc.spring.netty.server;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.stereotype.Controller;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
-@Controller
-@EnableAutoConfiguration
+@SpringBootApplication
 public class SpringNettyServer {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(SpringNettyServer.class, args);
-        new EchoServer(8080).start();
+        ApplicationContext ctx = SpringApplication.run(SpringNettyServer.class, args);
+        EchoServer echoServer = ctx.getBean(EchoServer.class);
+        echoServer.start(8080);
     }
 
 }

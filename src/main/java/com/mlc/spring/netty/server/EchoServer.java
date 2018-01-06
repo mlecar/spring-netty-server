@@ -2,6 +2,8 @@ package com.mlc.spring.netty.server;
 
 import java.net.InetSocketAddress;
 
+import org.springframework.stereotype.Component;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -10,21 +12,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+@Component
 public class EchoServer {
 
-    private final int port;
-
-    public EchoServer(int port) {
-        this.port = port;
-    }
-
-    public static void main(String[] args) throws Exception {
-        int port = 8080;
-
-        new EchoServer(port).start();
-    }
-
-    public void start() throws Exception {
+    public void start(int port) throws Exception {
         final EchoServerHandler serverHandler = new EchoServerHandler();
         EventLoopGroup group = new NioEventLoopGroup();
 
